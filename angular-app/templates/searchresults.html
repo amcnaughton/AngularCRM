@@ -1,0 +1,36 @@
+<h2>Matching Providers</h2>
+
+<div ng-if="results !== undefined">
+
+    <table st-table="displayedCollection" st-safe-src="results.rows" class="table table-striped">
+        <thead>
+        <tr>
+            <th ng-repeat="header in results.header">
+                {{ header.name }}
+            </th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection">
+            <td>
+                <a ng-if="row.type == 'Individual'"
+                   ng-click="showProfile('show_profile.html', row.id)">{{ row.name }}</a>
+                <a ng-if="row.type == 'Organization'"
+                   ng-click="showProfile('show_org_profile.html', row.id)">{{ row.name }}</a>
+            </td>
+            <td ng-if="results.geosearch == 1">{{ row.distance }}</td>
+            <td>{{ row.location }}</td>
+            <td>{{ row.phone }}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+</div>
+
+

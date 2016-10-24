@@ -1,0 +1,104 @@
+<div class="searchform">
+    <h2>Find a Resource</h2>
+
+    <div>
+        <form name="searchForm" id="searchparams" class="form-horizontal" method="post">
+            <fieldset>
+
+                <!-- Select Basic -->
+                <div class="control-group">
+                    <label class="control-label" for="organization">Organization</label>
+
+                    <div class="controls">
+                        <select chosen allow-single-deselect="false" data-placeholder="(optional)" id="organization" ng-model="form.organization"
+                                ng-options="org.id as org.name for org in org_list | orderObjectBy: 'name'"></select>
+                    </div>
+                </div>
+
+                <!-- Appended Input-->
+                <div class="control-group">
+                    <label class="control-label" for="distance">Within</label>
+
+                    <div class="controls">
+                        <div class="input-append">
+                            <input id="distance" class="input-mini" placeholder=""
+                                   type="text" ng-model="form.distance">
+                            <span class="add-on">miles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appended Input-->
+                <div class="control-group">
+                    <label class="control-label" for="zipcode">Of</label>
+
+                    <div class="controls">
+                        <div class="input-append">
+                            <input id="zipcode" class="input-medium" placeholder=""
+                                   type="text" ng-model="form.zipcode">
+                            <span class="add-on">zip/city</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="control-group">
+                    <label class="control-label" for="smes">Expert In</label>
+
+                    <div class="controls">
+                        <select chosen multiple id="smes" ng-model="form.sme_tags"
+                                ng-options="sme.id as sme.name for sme in smes | orderObjectBy: 'name'"></select>
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="control-group">
+                    <label class="control-label" for="relationship_types">Relationship</label>
+
+                    <div class="controls">
+                        <select chosen allow_single_deselect="false" data-placeholder="" id="relationship_types" ng-model="form.relationship_type"
+                                ng-options="relationship_type.id as relationship_type.name for relationship_type in relationship_types | orderObjectBy: 'name'"></select>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="searchvalue">Name</label>
+
+                    <div class="controls">
+                        <input id="searchvalue" type="text"
+                               placeholder="Enter a portion of the name" class="input-large"
+                               ng-model="form.name">
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="control-group">
+                    <label class="control-label" for="type">Show</label>
+
+                    <div class="controls">
+                        <select chosen id="type" class="input-large" ng-model="form.type">
+                            <option value="All">All Matches</option>
+                            <option value="Individual">Individuals Only</option>
+                            <option value="Organization">Organizations Only</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="control-group">
+                    <label class="control-label" for="searchbutton"></label>
+
+                    <div class="controls">
+                        <button id="searchbutton" ng-click="search()" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="controls">
+                        <a id="clearbutton" ng-click="clear()">Clear</a>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>

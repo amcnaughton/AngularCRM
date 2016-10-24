@@ -1,0 +1,177 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ contact.legal_name }}</h3>
+</div>
+
+<div class="modal-body">
+    <div ng-if="contact !== undefined" class="container">
+
+        <div class="row">
+
+            <div id="org-profile-left" class="col-md-8 left-panel">
+
+                <accordion close-others="false">
+                    <accordion-group heading="Business Information" is-open="true">
+                        <div class="form-horizontal" id="showprofile">
+                            <fieldset>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="street_address">Address</label>
+
+                                    <div class="controls">
+                                        <div id="street_address">{{ contact.street_address }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="city">City</label>
+
+                                    <div class="controls">
+                                        <div id="city">{{ contact.city }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="state">State</label>
+
+                                    <div class="controls">
+                                        <div id="state">{{ contact.state_province_name }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="postal_code">Zip Code</label>
+
+                                    <div class="controls">
+                                        <div id="postal_code">{{ contact.postal_code }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="phone">Phone</label>
+
+                                    <div class="controls">
+                                        <div id="phone">{{ contact.formatted_phone}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="email">Email</label>
+
+                                    <div class="controls">
+                                        <div id="email">{{ contact.email.email }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="days">Days Open</label>
+
+                                    <div class="controls">
+                                        <div id="days">{{ contact.business_days_open }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="hours">Hours</label>
+
+                                    <div class="controls">
+                                        <div id="hours">{{ contact.hours_of_operation }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="staffcount"># of Staff</label>
+
+                                    <div class="controls">
+                                        <div id="staffcount" ng-if="contact.staff_count > 0">{{ contact.staff_count }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="website">Website</label>
+
+                                    <div class="controls">
+                                        <div id="website"><a target="_blank" href="{{ contact.websites[0] }}">{{
+                                            contact.websites[0] }}</a></div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="selectsmes">Expert In</label>
+
+                                    <div class="controls">
+                                        <span class="tag" ng-repeat="tag in contact.sme_tags">{{ contact.smes[tag].name }}</span>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </accordion-group>
+
+                    <accordion-group ng-if="contact.board_chair || contact.board_members" heading="Board Information">
+                        <div>
+                            <div>Board Chair: <a ng-click="showProfile('show_profile.html', contact.board_chair.id)">{{
+                                contact.board_chair | fullName }}</a></div>
+                        </div>
+
+                        <div ng-if="contact.board_members">
+                            <div>Board Members</div>
+                            <ul>
+                                <li data-ng-repeat="member in contact.board_members">
+                                    <a ng-click="showProfile('show_profile.html', member.id)"> {{ member | fullName
+                                        }} </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </accordion-group>
+
+
+                    <accordion-group ng-if="contact.employees" heading="Employees">
+                        <div>
+                            <ul>
+                                <li data-ng-repeat="employee in contact.employees">
+                                    <a ng-click="showProfile('show_profile.html', employee.id)">{{ employee | fullName
+                                        }} </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </accordion-group>
+
+
+                </accordion>
+
+            </div>
+
+            <div ng-if="contact.executive_director" id="org-profile-right" class="col-md-4">
+
+                <h3 class="text-muted">
+                    Leadership
+                </h3>
+
+                <div ng-if="contact.executive_director">
+                    <div class="thumbnail">
+                        <img width="200px" ng-if="contact.executive_director.image_URL"
+                             ng-src="{{contact.executive_director.image_URL | decodeUrl}}"/>
+
+                        <div class="caption">
+                            <h4>
+                                Executive Director
+                            </h4>
+
+                            <p>
+                                <a ng-click="showProfile('show_profile.html', contact.executive_director.id)">{{
+                                    contact.executive_director | fullName }}</a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Ok</button>
+</div>
+

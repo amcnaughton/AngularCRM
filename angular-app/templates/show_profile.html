@@ -1,0 +1,102 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ contact | fullName }}
+        <a ng-if="contact.editable" ng-click="editProfile('edit_profile.html', contact.contact_id)" class="edit-link btn-link pull-right">Edit</a>
+    </h3>
+</div>
+
+<div class="modal-body">
+
+    <div ng-if="contact !== undefined" class="container">
+
+        <div class="row">
+
+            <div class="col-md-8">
+                <div class="form-horizontal" id="showprofile">
+                    <fieldset>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="street_address">Address</label>
+
+                            <div class="controls">
+                                <div id="street_address">{{ contact.address.street_address }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="city">City</label>
+
+                            <div class="controls">
+                                <div id="city">{{ contact.address.city }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="control-group">
+                            <label class="control-label" for="state">State</label>
+
+                            <div class="controls">
+                                <div id="state">{{ contact.state_province_name }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="postal_code">Zip Code</label>
+
+                            <div class="controls">
+                                <div id="postal_code">{{ contact.address.postal_code }}</div>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="phone">Phone</label>
+
+                            <div class="controls">
+                                <div id="phone">{{ contact.phone.phone }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="email">Email</label>
+
+                            <div class="controls">
+                                <div id="email">{{ contact.email.email }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="control-group">
+                            <label class="control-label" for="job_title">Job Title</label>
+
+                            <div class="controls">
+                                <div id="job_title">{{ contact.job_title }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="control-group">
+                            <label class="control-label" for="selectsmes">Expert In</label>
+
+                            <div class="controls">
+                                <span class="tag" ng-repeat="tag in contact.sme_tags">{{ contact.smes[tag].name }}</span>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <img width="200px" ng-if="contact.image_URL" ng-src="{{contact.image_URL | decodeUrl}}"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Ok</button>
+</div>
