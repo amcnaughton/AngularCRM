@@ -13,6 +13,6 @@ The app supports complex multi-attribute searches (including by geocode) and pro
 
 Video Walkthrough
 ------------
-[Join me](http://placeholder.com) for a narrated video walkthrough of the app and its API.
+[Join me](https://www.youtube.com/watch?v=18AsoY5cwZc&feature=youtu.be) for a narrated video walkthrough of the app and its API.
 
 Allan
